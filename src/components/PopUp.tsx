@@ -2,7 +2,11 @@ interface PopUpProps {
   isOpen: boolean;
   onClose: () => void;
 }
-
+const datos = [
+  { nombre: 'Juan', rut: '12345678-9' },
+  { nombre: 'María', rut: '98765432-1' },
+  { nombre: 'Carlos', rut: '87654321-0' },
+];
 const PopUp = ({ isOpen, onClose }: PopUpProps) => {
   if (!isOpen) return null;
   return (
@@ -19,13 +23,22 @@ const PopUp = ({ isOpen, onClose }: PopUpProps) => {
           <h1 className="text-[2vw] font-semibold  mb-0 mt-4">
             Informacion del indicador
           </h1>
-          <h2 className="text-[1.5vw] font-semibold  mb-2 text-red-500">
-            XDDDD
-          </h2>
-          <div className="m-2">
-            <p>LISTA DE VARIABLES </p>
-            XDDDD
-          </div>
+          <table className="min-w-full bg-white border border-gray-300">
+            <thead>
+              <tr className="bg-gray-100">
+                <th className="py-2 px-4 border-b">Nombre</th>
+                <th className="py-2 px-4 border-b">RUT</th>
+              </tr>
+            </thead>
+            <tbody>
+              {datos.map((dato, index) => (
+                <tr key={index}>
+                  <td className="py-2 px-4 border-b">{dato.nombre}</td>
+                  <td className="py-2 px-4 border-b">{dato.rut}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
