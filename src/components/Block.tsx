@@ -1,25 +1,35 @@
 import { useState } from "react";
+import PopUp from "./PopUp"
 
-interface ButtonTypeRoomProps {
+interface BlockProps {
   text: string;
 }
 
-export default function Block({ text }: ButtonTypeRoomProps) {
-  const [isClicked, setIsClicked] = useState(false);
+export default function Block({ text }: BlockProps) {
+  const [popUpButton, setPopUpButton] = useState(false);
+  const handleClosePopUp = () => {
+    setPopUpButton(false);
+  };
 
   const handleButtonClick = () => {
-    setIsClicked(!isClicked);
+    setPopUpButton(!popUpButton);
   };
   return (
     <div className="p-2">
       <button
-        className={`w-full  ${
-          isClicked ? " border-blue-500 text-blue-500" : ""
+        className={`w-full p-1 rounded-sm ${
+          popUpButton ? " text-white bg-blue-500" : ""
         }`}
         onClick={handleButtonClick}
       >
         {text}
       </button>
+      <div>
+          <PopUp
+            isOpen={popUpButton}
+            onClose={handleClosePopUp}
+          />
+        </div>
     </div>
   );
 }

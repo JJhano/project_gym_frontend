@@ -51,15 +51,15 @@ const Calendar = () => {
 
       if (dayNumber > 0 && dayNumber <= daysInMonth) {
         dayElements.push(
-          <div key={i} className="text-center">
-            <div className="font-bold">
+          <div key={i} className="text-center mt-2 mb-2 ">
+            <div className="font-bold text-xl">
               {daysOfWeek[i]}
               {" " + dayNumber}
             </div>
-            <div className="m-1 ">
+            <div className="m-1 flex flex-col gap-2">
               {timeBlocks.map((block, blockIndex) => (
-                <div key={blockIndex} className="">
-                  <Block text={block} />
+                <div key={blockIndex} className="m-1">
+                  <Block text={block}/>
                 </div>
               ))}
             </div>
@@ -84,12 +84,16 @@ const Calendar = () => {
   };
 
   return (
-    <div className="w-full">
-      <h2 className="text-center font-bold text-2xl m-2 mb-6">
-        {months[currentDate.getMonth()]}
-      </h2>
-      <div className="grid grid-flow-col ">{renderDays()}</div>
-
+    <div className="w-full h-full">
+      <div className="h-full flex flex-col border-2" style={{ maxHeight: 'calc(100% - 64px)' }}>
+        <h2 className="text-center font-bold text-2xl m-2 mb-6">
+          {months[currentDate.getMonth()]}
+        </h2>
+        <div className="grid grid-flow-col justify-items-center h-full">
+          {renderDays()}
+        </div>
+      </div>
+  
       <div className="fixed bottom-0 left-0 right-0 p-4 bg-gray-200 flex justify-between">
         <button
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
@@ -106,6 +110,7 @@ const Calendar = () => {
       </div>
     </div>
   );
+  
 };
 
 export default Calendar;
